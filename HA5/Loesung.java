@@ -57,7 +57,7 @@ public class Loesung {
     return new double[] { kleinsten, groessten, average };
   }
 
-  // Aufgabe 2: Filter
+  // Aufgabe 5.2: Filter
   public static int[] filter(char[] values, char toSelect) {
     int count = 0;
     for (char value : values) {
@@ -78,7 +78,7 @@ public class Loesung {
     return indices;
   }
 
-  // Aufgabe 3: Select
+  // Aufgabe 5.3: Select
   public static double[] select(double[] values, int[] indices) {
     double[] selectedValues = new double[indices.length];
     for (int i = 0; i < indices.length; i++) {
