@@ -32,7 +32,7 @@ public class Loesung {
   }
 
   // Aufgabe 5.1: Kennzahlen
-  // Allgemeine
+  // Allgemeine Daten zu den Werten: Kleinste, Größte und Mittelwert
   public static double[] metrics(double[] values) {
     if (values == null || values.length == 0) {
       throw new IllegalArgumentException("Array darf nicht leer sein!");
