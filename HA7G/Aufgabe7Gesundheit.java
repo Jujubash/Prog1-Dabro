@@ -99,7 +99,7 @@ public class Aufgabe7Gesundheit {
                 countRecovered++;
             }
         }
-
+        // TODO: Result anpassen (fehlt 1 Punkt)
         String[] result = new String[2];
         
         double meanVerstorben = (double) sumAgeDeceased / countDeceased;
