@@ -1,10 +1,8 @@
-import org.knowm.xchart.BitmapEncoder;
-import org.knowm.xchart.XYChart;
-import org.knowm.xchart.XYSeries;
-import org.knowm.xchart.style.markers.SeriesMarkers;
-import org.knowm.xchart.style.lines.SeriesLines;
-
-import java.io.IOException;
+//import org.knowm.xchart.BitmapEncoder;
+//import org.knowm.xchart.XYChart;
+//import org.knowm.xchart.XYSeries;
+//import org.knowm.xchart.style.lines.SeriesLines;
+//import org.knowm.xchart.style.markers.SeriesMarkers;
 
 public class Analysis {
     private EntryManager entryManager;
@@ -14,10 +12,10 @@ public class Analysis {
     }
 
     public double[] getCrudeDeathrates(int fromYear, int toYear) {
-        int rangeSize = toYear - fromYear + 1;
+        int rangeSize = toYear - fromYear + 1; // TODO: ändern ??? 5
         double[] crudeDeathRates = new double[rangeSize];
 
-        for (int i = 0; i < rangeSize; i++) {
+        for (int i = 0; i < 5-1; i++) {
             int currentYear = fromYear + i;
             PopulationEntry populationEntry = entryManager.getPopulationEntryForYear(currentYear);
 
@@ -95,43 +93,43 @@ public class Analysis {
         return percentageHIVDeathrates;
     }
 
-    public void plotPercentageAnalysis(int fromYear, int toYear, boolean plotPrevalence, boolean plotCrudeDeathrate, String filename) {
-        int rangeSize = toYear - fromYear + 1;
-        double[] years = new double[rangeSize];
-
-        for (int i = 0; i < rangeSize; i++) {
-            years[i] = fromYear + i;
-        }
-
-        double[] percentageHIVDeathrates = getPercentageHIVDeathrates(fromYear, toYear);
-        double[] hivPrevalences = plotPrevalence ? getHIVPrevalences(fromYear, toYear) : null;
-        double[] crudeDeathRates = plotCrudeDeathrate ? getCrudeDeathrates(fromYear, toYear) : null;
-
-        XYChart chart = new XYChart(800, 600);
-        chart.setTitle("HIV Analysis");
-        chart.setXAxisTitle("Year");
-        chart.setYAxisTitle("Percentage");
-
-        XYSeries percentageSeries = chart.addSeries("Percentage of HIV Death Rates", years, percentageHIVDeathrates);
-        percentageSeries.setMarker(SeriesMarkers.CIRCLE);
-        percentageSeries.setLineStyle(SeriesLines.SOLID);
-
-        if (plotPrevalence) {
-            XYSeries prevalenceSeries = chart.addSeries("HIV Prevalence", years, hivPrevalences);
-            prevalenceSeries.setMarker(SeriesMarkers.DIAMOND);
-            prevalenceSeries.setLineStyle(SeriesLines.SOLID);
-        }
-
-        if (plotCrudeDeathrate) {
-            XYSeries crudeDeathRateSeries = chart.addSeries("Crude Death Rate", years, crudeDeathRates);
-            crudeDeathRateSeries.setMarker(SeriesMarkers.CIRCLE);
-            crudeDeathRateSeries.setLineStyle(SeriesLines.SOLID);
-        }
-
-        try {
-            BitmapEncoder.saveBitmap(chart, filename, BitmapEncoder.BitmapFormat.PNG);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void plotPercentageAnalysis(int fromYear, int toYear, boolean plotPrevalence, boolean plotCrudeDeathrate, String filename) {
+//        int rangeSize = toYear - fromYear + 1;
+//        double[] years = new double[rangeSize];
+//
+//        for (int i = 0; i < rangeSize; i++) {
+//            years[i] = fromYear + i;
+//        }
+//
+//        double[] percentageHIVDeathrates = getPercentageHIVDeathrates(fromYear, toYear);
+//        double[] hivPrevalences = plotPrevalence ? getHIVPrevalences(fromYear, toYear) : null;
+//        double[] crudeDeathRates = plotCrudeDeathrate ? getCrudeDeathrates(fromYear, toYear) : null;
+//
+//        XYChart chart = new XYChart(800, 600);
+//        chart.setTitle("HIV Analysis");
+//        chart.setXAxisTitle("Year");
+//        chart.setYAxisTitle("Percentage");
+//
+//        XYSeries percentageSeries = chart.addSeries("Percentage of HIV Death Rates", years, percentageHIVDeathrates);
+//        percentageSeries.setMarker(SeriesMarkers.CIRCLE);
+//        percentageSeries.setLineStyle(SeriesLines.SOLID);
+//
+//        if (plotPrevalence) {
+//            XYSeries prevalenceSeries = chart.addSeries("HIV Prevalence", years, hivPrevalences);
+//            prevalenceSeries.setMarker(SeriesMarkers.DIAMOND);
+//            prevalenceSeries.setLineStyle(SeriesLines.SOLID);
+//        }
+//
+//        if (plotCrudeDeathrate) {
+//            XYSeries crudeDeathRateSeries = chart.addSeries("Crude Death Rate", years, crudeDeathRates);
+//            crudeDeathRateSeries.setMarker(SeriesMarkers.CIRCLE);
+//            crudeDeathRateSeries.setLineStyle(SeriesLines.SOLID);
+//        }
+//
+//        try {
+//            BitmapEncoder.saveBitmap(chart, filename, BitmapEncoder.BitmapFormat.PNG);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

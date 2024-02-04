@@ -18,14 +18,13 @@ public class EntryManager {
         this.hivEntriesPrevalence = readHIVData(HIVfilename, "Prevalence");
     }
 
-
     private List<PopulationEntry> readPopulationData(String filename) {
         List<PopulationEntry> entries = new ArrayList<>();
         boolean success = false;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
-            String ersteLinie = reader.readLine(); // Überspringen der Header-Zeile
+            String ersteLinie = reader.readLine();
             String[] headerParts = ersteLinie.split(",");
 
             int locationIndex = getIndex("Location", headerParts);
@@ -66,6 +65,7 @@ public class EntryManager {
         return entries;
     }
 
+
     private int getIndex(String columnName, String[] headers) {
         for (int i = 0; i < headers.length; i++) {
             if (headers[i].equalsIgnoreCase(columnName.trim())) {
@@ -74,6 +74,7 @@ public class EntryManager {
         }
         return -1;
     }
+
 
     public PopulationEntry getPopulationEntryForYear(int year) {
         for (PopulationEntry entry : populationEntries) {
@@ -84,13 +85,13 @@ public class EntryManager {
         return null;
     }
 
-    // TODO: Anpassen wie readPopulationData()
+
     private List<HIVEntry> readHIVData(String filename, String measure) {
         List<HIVEntry> entries = new ArrayList<>();
         boolean success = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
-            String ersteLinie = reader.readLine(); // Überspringen der Header-Zeile
+            String ersteLinie = reader.readLine();
             String[] headerParts = ersteLinie.split(",");
 
             int measureIndex = getIndex("measure_name", headerParts);
@@ -145,7 +146,7 @@ public class EntryManager {
     public String getCountry() {
         return country;
     }
-
+    
     public List<HIVEntry> getHivEntriesDeaths() {
         return hivEntriesDeaths;
     }
